@@ -1,0 +1,51 @@
+/* styles */
+/* called by your view template */
+
+/* You might want to try something fancier: */
+/* less: http://lesscss.org/ */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 100px; /* bottom = footer height */
+}
+header{
+  text-align: center;
+  height: 150px;
+  padding-top: 50px;
+  background-color: #4B515D;
+  color: white;
+}
+footer{
+  background-color: #e0e0e0;
+  padding-top: 10px;
+  padding-left: 100px;
+  color: grey;
+  border-top: solid;
+  border-color: grey;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 120px;
+  width: 100%;
+  overflow:hidden;
+}
+main{
+  background-color: white;
+  color: #3E4551;
+}
+.container{
+  background-color: white;
+  box-shadow: 0px 0px 5px black;
+  border-radius: 0.5%;
+  margin: 5px;
+}
+.col{
+  padding-top: 30px;
+}
+ul#hints {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}

@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Secret Santa 2017</title>
+    <meta name="description" content="Handle the secret santa">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" 
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" 
+      crossorigin="anonymous">
+  </head>
+  <body>
+    
+    <header>
+      <h1>
+        Secret Santa 2017
+      </h1>
+    </header>
+    <main>
+      <div class = "container">
+        <div class = "row">
+          <div class = "col col-6">
+            <div class = "row">
+              <div class = "col-1"></div>
+              <div class = "col-10">
+              <h5 class="page-header">Share your suggestions for Santa:</h5>
+              <form class="new-hint">
+                <input class="hint-input form-control" type="text" maxlength="100" placeholder="hint for Santa">
+                <label></label><br>
+                <button type="submit" class="btn btn-primary">Suggest!</button><br>
+                <label></label>
+                
+              </form>
+              </div>
+            </div>
+
+            <div class = "row">
+              <div class = "col-1"></div>
+              <div class="hints col-10">
+                <ul id="hints">
+                </ul>
+              </div>          
+              <div calss = "col-2"></div>
+            </div>
+          </div>
+          <div class = "col col-6">
+            <div class = "row">
+              <div class = "col-1"></div>
+              <div class = "col-10">
+
+              <h5>Insert your data to participate:</h5>
+         
+            <form class="new-email">
+       
+              <input class="mail-input form-control" type="text" placeholder="email"><br>
+              
+              <input class="name-input form-control" type="text" maxlength="100" placeholder="name"><br>
+              
+              <label>I don't want to be the Secret Santa of**:</label><br>              
+              <input class="partner form-control" type="text" maxlength="100" placeholder="partner/pedro/SO/archenemy*** 1"><br>
+              <input class="child form-control" type="text" maxlength="100" placeholder="partner/pedro/SO/archenemy*** 2"><br>
+
+              <button type="submit" class="btn btn-primary">Join the party!</button><br>
+              <label></label>
+            </form>                                       
+              </div>
+            </div>
+            <div class = "row">
+              <div class = "col col-1">                
+              </div>
+              <div class ="col col-10 participants">
+                <p>
+                  Who joined so far:
+                </p>
+              <ul id="participants">
+              </ul>                                 
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>             
+    </main>
+    <footer>
+      <small>
+        *once submitted, it can't be modified.
+      </small><br>
+      <small>
+        **be sure that the names match correctly.
+      </small><br>
+      <small>
+        ***the name of your archenemy will be displayed for everyone to see, we decline every responsibility.
+      </small>
+      <p>
+        by Michelino
+      </p>
+
+    </footer>
+
+    <!-- Your web-app is https, so your scripts need to be too -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/client.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" 
+            integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" 
+            crossorigin="anonymous"></script>
+  </body>
+</html>
