@@ -1,27 +1,14 @@
-Welcome to the Glitch BETA
+Secret Santa 2017
 =========================
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+https://mhl-secretsanta.glitch.me/
 
-**Glitch** is the friendly commmunity where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+This app manages the secret santa.
 
-Find out more [about Glitch](https://glitch.com/about).
+The user can insert his details and a short list of people he doesn't want to make a present to (e.g. his SO)
 
+The user can insert some hint/themes for Santa.
 
-Your Project
-------------
-
-On the front-end,
-- edit `public/client.js`, `public/style.css` and `views/index.html`
-- drag in `assets`, like images or music, to add them to your project
-
-On the back-end,
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
+When everyone is registered, the secret Santa of every participant is extracted randomly, taking into account the preferences express beforehand. Each Santa receives an email with the name of the recipient of his gift and two random hints/themes which must be taken into account when making the present.
 
 
-Made by [Fog Creek](https://fogcreek.com/)
--------------------
-
-\ ゜o゜)ノ
