@@ -98,45 +98,72 @@ app.post("/address", function (request, response){
   
 });
 
-//get a random sample from database
 /*
+// activate the extraction
+
 app.get("/random", function(request, response){
   console.log('asking the database');
+  
   var iterationLimit = null;
+  
   displayParts(function(parts){
     
+    // extract the list of participant and store it in 'parts'
+    
     //extract the secret Santa
-    var alreadyExtracted = []
+    var alreadyExtracted = [] // store the participants that where already extracted as santas
+    
+    // loop over all participants to create a list of santas of the form
+    // {
+    //  santaEmail : <email address of santa>,
+    //  santaName : <name of the secret santa>,
+    //  recipient : <name of the recipient>,
+    // }
+    
     var santas = parts.map(function(value, index){
       
+      // extract a random participant and store it as 'santa', the recipient of the present will be 'value'
       var rand = Math.floor(Math.random()*parts.length);
       var santa = parts[rand].name;
-      var j = 0;
+    
+      // check if the extracted 'santa' meets one of the following condition, in which case extract again because it is not valid:
+      // - santa is the same as value
+      // - santa is the partner of value
+      // - santa is the child/parent of value
+      // - santa was already extracted
+      
+      var j = 0; // use this variable to prevent an infinite loop. The program might not produce a result.
+           
       while(santa == value.name || santa == value.partner || santa == value.child || alreadyExtracted.includes(rand) && j < 10000){
         
         rand = Math.floor(Math.random()*parts.length);
         santa = parts[rand].name;
         j++;
         
-      }//while
+      }//end while
       
-      //check if the iteration went too far
+      // check if the iteration went too far
       if (j == 10000) iterationLimit = j;
       
+      // reset the iteration count for the next 'value'
       j = 0;
- 
+      
+      // update the list of already extracted santas
       alreadyExtracted.push(rand);
+      
       console.log(j);
       console.log(alreadyExtracted);
-      return {santaEmail: parts[rand].mail, 
-              santaName: parts[rand].name,
-              recipient: value.name
-              };
       
-    });
+      return {
+        santaEmail: parts[rand].mail, 
+        santaName: parts[rand].name,
+        recipient: value.name
+              };      
+    }); // end santas
     
     if (iterationLimit) response.send("iteration limit exceeded");
     
+    // retrieve the list of hints from the database
     displayHints(function(documents){
       
       //if there are too few hints, throw an error
@@ -157,26 +184,56 @@ app.get("/random", function(request, response){
           
           var mailText = 'Ciao ' + santas[i].santaName + ",\n\n"
             + "quest'anno dovrai fare il regalo a \n\n"
-            + santas[i].recipient + "\n\n"
+            + "**" + santas[i].recipient + "**\n\n"
             + "ma non dimenticare che deve essere attinente a questi temi:\n\n"
-            + santas[i].hintOne + "\n"
-            + santas[i].hintTwo + "\n\n"
+            + "*" + santas[i].hintOne + "*\n"
+            + "*" + santas[i].hintTwo + "*\n\n"
             + "Buon lavoro!\n\n" + "Saluti,\n"
             + "Babbo natale";   
           
           sendEmail({
             from: "Secret Santa 2017", // sender address
             to: mailTo, // list of receivers
-            subject: 'Secret Santa 2017', // Subject line
+            subject: 'Secret Santa 2017', // Subject line 
             text: mailText // plain text body 
           });
-        }
+        }//end for
+        
+        // send a list of recipient and hits to santa
+        var mailIntro = "Ciao,\n\n questa è la lista completa degli indizi\n "
+          + "che puoi usare come ti pare\n"
+          + "basta che non la leggi prima del dovuto\n"
+          + "spero di aver aggiungo abbastanza parole perché l'anteprima non spoileri nulla\n"
+          + "nel caso ricevessi uno spoiler da questa mail ti consiglio i seguenti rimedi:\n"
+          + "- bere un bicchiere di acqua bollente tutto d'un soffio\n"
+          + "- fare tre giri su te stesso mentre canti la cucaracia\n"
+          + "- invertire il ciclo sveglia/riposo in modo da non vedere mai la luce del sole\n"
+          + "Spero che i rimedi precedenti siano stati utili, altrimenti puoi provare quanto segue:\n"
+          + "- non leggere oltre :) \n".repeat(10)
+          + "Nel frattempo ho imparato come si ripetono le stringhe.\n"
+          + "Se sei arrivato a leggere fino qui te la sei cercata, ma ti do un'altra possibilità:\n"
+          + "- non leggere oltre :) \n".repeat(20)
+          + "Ecco la lista: \n";
+        
+        var anonymousSantas = santas.reduce(function(acc, santa){
+          
+          return acc + "- "
+            + santa.recipient + " : "
+            + santa.hintOne + ", "
+            + santa.hintTwo + "\n"
+        }, mailIntro);
+        
+        sendEmail({
+          from: "Secret Santa 2017",
+          to: "secretbabbo17@gmail.com",
+          subject: "Super Secret List of Hints",
+          text: anonymousSantas
+        })
               
         response.send(santas);
       });//shuffle
     });//display hints
   });
-
 });
 */
 
